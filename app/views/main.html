@@ -1,0 +1,50 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<td>
+				Title
+			</td>
+			<td>
+				Description
+			</td>
+			<td>
+				Location
+			</td>
+			<td>
+				Posted on
+			</td>
+			<td>
+				Options
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="job in jobList | orderBy: 'title'">
+			<td>
+				<span ng-show="!job.editMode">{{job.title}}</span>
+				<input ng-show="job.editMode" ng-model="job.title" placeholder="job.title"/>
+			</td>
+			<td>
+				<span ng-show="!job.editMode">{{job.description}}</span>
+				<input ng-show="job.editMode" ng-model="job.description" placeholder="job.description"/>
+			</td>
+			<td>
+				<span ng-show="!job.editMode">{{job.location}}</span>
+				<input ng-show="job.editMode" ng-model="job.location" placeholder="job.location"/>
+			</td>
+			<td>
+				<span>{{job.postedOn | date:'medium'}}</span>
+			</td>
+			<td>
+				<button class="btn btn-danger" ng-click="deleteJob(job)">Delete</button>
+				<button class="btn btn-warning" ng-click="job.editMode = !job.editMode" ng-show="!job.editMode">Edit</button>
+				<button class="btn btn-success" ng-click="job.editMode = !job.editMode;updateJob(job)" ng-show="job.editMode">Save</button>
+			</td>
+		</tr>
+	</tboby>
+</table>
+<input type="text" ng-model="job.title" placeholder="Title">
+<input type="text" ng-model="job.description" placeholder="Description">
+<input type="text" ng-model="job.location" placeholder="Location">
+
+<button class="btn btn-primary" ng-click="addJob(job)">Add new job</button>
