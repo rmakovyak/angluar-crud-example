@@ -9,6 +9,7 @@
  */
 angular.module('crudApp')
   .controller('MainCtrl', function ($scope, jobs) {
+        $scope.predicate = 'postedOn';
 
     	$scope.getJobs = function() {
             jobs.getJobs( function( data ) {
@@ -30,7 +31,9 @@ angular.module('crudApp')
 
         $scope.updateJob = function ( model ) {
             jobs.updateJob( model, function( data ) {
-                $scope.getJobs();
+                console.log( "update success" );
+            }, function( error ) {
+                console.log( "update error" );
             });
         };
 

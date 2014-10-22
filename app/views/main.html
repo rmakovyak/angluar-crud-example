@@ -1,17 +1,29 @@
-<table class="table table-striped">
+<table class="table table-bordered">
 	<thead>
-		<tr>
+		<tr class="active">
 			<td>
 				Title
+				<a href="" ng-click="predicate = 'title'; reverse=!reverse">
+					<span class="glyphicon glyphicon-sort"></span>
+				</a>
 			</td>
 			<td>
 				Description
+				<a href="" ng-click="predicate = 'description'; reverse=!reverse">
+					<span class="glyphicon glyphicon-sort"></span>
+				</a>
 			</td>
 			<td>
 				Location
+				<a href="" ng-click="predicate = 'location'; reverse=!reverse">
+					<span class="glyphicon glyphicon-sort"></span>
+				</a>
 			</td>
 			<td>
 				Posted on
+				<a href="" ng-click="predicate = 'postedOn'; reverse=!reverse; postedOn.arrow = !postedOn.arrow">
+					<span class="glyphicon glyphicon-sort"></span>
+				</a>
 			</td>
 			<td>
 				Options
@@ -19,7 +31,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="job in jobList | orderBy: 'title'">
+		<tr ng-repeat="job in jobList | orderBy:predicate:reverse">
 			<td>
 				<span ng-show="!job.editMode">{{job.title}}</span>
 				<input ng-show="job.editMode" ng-model="job.title" placeholder="job.title"/>
